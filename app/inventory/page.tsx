@@ -238,7 +238,7 @@ export default function InventoryPage() {
         </div>
 
         {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           <div className="bg-white rounded-xl p-4 sm:p-6 shadow-sm border border-gray-100">
             <div className="flex items-center justify-between">
               <div>
@@ -333,10 +333,10 @@ export default function InventoryPage() {
               <Loader size={32} className="text-primary-500 animate-spin" />
             </div>
           ) : filteredProducts.length === 0 ? (
-            <div className="text-center py-12">
-              <Package className="mx-auto text-gray-300 mb-4" size={48} />
-              <p className="text-gray-500 text-lg">No products found</p>
-              <p className="text-gray-400 text-sm mt-1">Add your first product to get started</p>
+            <div className="text-center py-8 sm:py-12">
+              <Package className="mx-auto text-gray-300 mb-3 sm:mb-4" size={40} />
+              <p className="text-gray-500 text-base sm:text-lg">No products found</p>
+              <p className="text-gray-400 text-xs sm:text-sm mt-1">Add your first product to get started</p>
             </div>
           ) : (
             <div className="overflow-x-auto">
@@ -445,11 +445,11 @@ export default function InventoryPage() {
       {/* Add Product Modal */}
       {showAddModal && (
         <div className="fixed inset-0 bg-black/45 flex items-center justify-center p-4 z-50">
-          <div className="bg-white rounded-xl shadow-xl max-w-md w-full p-6">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">Add New Product</h2>
-            <form onSubmit={handleAddProduct} className="space-y-4">
+          <div className="bg-white rounded-xl shadow-xl max-w-md w-full p-5 sm:p-6">
+            <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">Add New Product</h2>
+            <form onSubmit={handleAddProduct} className="space-y-3 sm:space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1.5">Product Name</label>
+                <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5">Product Name</label>
                 <input
                   type="text"
                   required
@@ -541,11 +541,11 @@ export default function InventoryPage() {
       {/* Edit Product Modal */}
       {showEditModal && (
         <div className="fixed inset-0 bg-black/45 flex items-center justify-center p-4 z-50">
-          <div className="bg-white rounded-xl shadow-xl max-w-md w-full p-6">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">Edit Product</h2>
-            <form onSubmit={handleUpdateProduct} className="space-y-4">
+          <div className="bg-white rounded-xl shadow-xl max-w-md w-full p-5 sm:p-6">
+            <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">Edit Product</h2>
+            <form onSubmit={handleUpdateProduct} className="space-y-3 sm:space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1.5">Product Name</label>
+                <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5">Product Name</label>
                 <input
                   type="text"
                   required

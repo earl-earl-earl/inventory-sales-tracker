@@ -56,7 +56,7 @@ export default function Sidebar({ isCollapsed: collapsedProp, setIsCollapsed: se
       {/* Mobile Menu Button */}
       <button
         onClick={toggleMobileSidebar}
-        className={`lg:hidden fixed top-4 p-2 rounded-lg bg-primary-600 text-white hover:bg-primary-700 transition-colors z-50 ${
+        className={`lg:hidden fixed top-4 p-2 md:p-3 rounded-lg bg-primary-600 text-white hover:bg-primary-700 transition-colors z-50 ${
           isMobileOpen ? "right-4" : "left-4"
         }`}
       >
@@ -76,7 +76,7 @@ export default function Sidebar({ isCollapsed: collapsedProp, setIsCollapsed: se
         className={`
           fixed top-0 left-0 h-screen bg-white dark:bg-white border-r border-gray-500/35 dark:border-gray-300 
           transition-all duration-300 ease-in-out z-40 overflow-x-hidden overflow-y-auto flex flex-col
-          ${isCollapsed ? "w-20" : "w-80"}
+          ${isCollapsed ? "w-20" : "w-80 md:w-72 lg:w-80"}
           ${isMobileOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"}
         `}
       >
@@ -118,10 +118,10 @@ export default function Sidebar({ isCollapsed: collapsedProp, setIsCollapsed: se
                 </span>
               </div>
               <div className="flex-1 min-w-0">
-                <p className="font-medium text-gray-900 dark:text-white truncate">
+                <p className="font-medium text-sm md:text-base text-gray-900 dark:text-white truncate">
                   {user.name}
                 </p>
-                <p className="text-sm text-gray-500 dark:text-gray-400 truncate">
+                <p className="text-xs md:text-sm text-gray-500 dark:text-gray-400 truncate">
                   {user.email}
                 </p>
               </div>
@@ -153,7 +153,7 @@ export default function Sidebar({ isCollapsed: collapsedProp, setIsCollapsed: se
               >
                 <Icon className="w-5 h-5 shrink-0" />
                 {!isCollapsed && (
-                  <span className="font-medium">{item.name}</span>
+                  <span className="font-medium text-sm md:text-base">{item.name}</span>
                 )}
               </Link>
             );

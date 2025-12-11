@@ -150,7 +150,7 @@ export default function Dashboard() {
         </div>
 
         {/* Key Metrics */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {/* Total Inventory Value */}
           <div className="bg-white rounded-xl p-4 sm:p-6 shadow-sm border border-gray-100">
             <div className="flex items-center justify-between mb-3 sm:mb-4">
@@ -212,7 +212,7 @@ export default function Dashboard() {
         </div>
 
         {/* Charts Row */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
           {/* Sales Trend */}
           <div className="bg-white rounded-xl p-4 sm:p-6 shadow-sm border border-gray-100">
             <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-3 sm:mb-4">Sales Trend (Last 7 Days)</h3>
@@ -224,8 +224,8 @@ export default function Dashboard() {
               <ResponsiveContainer width="100%" height={250}>
                 <LineChart data={salesTrend}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
-                  <XAxis dataKey="date" stroke="#666" style={{ fontSize: '12px' }} />
-                  <YAxis stroke="#666" style={{ fontSize: '12px' }} />
+                  <XAxis dataKey="date" stroke="#666" style={{ fontSize: '10px' }} tick={{ fontSize: 10 }} />
+                  <YAxis stroke="#666" style={{ fontSize: '10px' }} tick={{ fontSize: 10 }} />
                   <Tooltip 
                     contentStyle={{ 
                       backgroundColor: '#fff', 
@@ -261,6 +261,7 @@ export default function Dashboard() {
                     outerRadius={80}
                     fill="#8884d8"
                     dataKey="value"
+                    style={{ fontSize: '11px' }}
                   >
                     {categoryData.map((entry, index) => (
                       <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
@@ -278,7 +279,7 @@ export default function Dashboard() {
         </div>
 
         {/* Bottom Row */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
           {/* Top Selling Products */}
           <div className="bg-white rounded-xl p-4 sm:p-6 shadow-sm border border-gray-100">
             <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-3 sm:mb-4">Top Selling Products</h3>
@@ -290,8 +291,8 @@ export default function Dashboard() {
               <ResponsiveContainer width="100%" height={250}>
                 <BarChart data={topProducts}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
-                  <XAxis dataKey="name" stroke="#666" style={{ fontSize: '12px' }} />
-                  <YAxis stroke="#666" style={{ fontSize: '12px' }} />
+                  <XAxis dataKey="name" stroke="#666" style={{ fontSize: '10px' }} tick={{ fontSize: 10 }} />
+                  <YAxis stroke="#666" style={{ fontSize: '10px' }} tick={{ fontSize: 10 }} />
                   <Tooltip 
                     contentStyle={{ 
                       backgroundColor: '#fff', 
@@ -322,18 +323,18 @@ export default function Dashboard() {
               {loading ? (
                 <div className="h-48 sm:h-64 flex items-center justify-center">
                   <Loader size={32} className="text-primary-500 animate-spin" />
-                </div>
+              </div>
               ) : lowStockItems.length > 0 ? (
                 lowStockItems.map((product) => (
-                  <div key={product.$id} className="flex items-center justify-between p-3 bg-orange-50 rounded-lg border border-orange-100">
-                    <div className="flex items-center gap-3">
-                      <AlertCircle className="text-orange-500" size={20} />
+                  <div key={product.$id} className="flex items-center justify-between p-2 sm:p-3 bg-orange-50 rounded-lg border border-orange-100">
+                    <div className="flex items-center gap-2 sm:gap-3">
+                      <AlertCircle className="text-orange-500" size={18} />
                       <div>
-                        <p className="font-medium text-gray-900">{product.name}</p>
+                        <p className="font-medium text-sm sm:text-base text-gray-900">{product.name}</p>
                         <p className="text-xs text-gray-500">{product.category}</p>
                       </div>
                     </div>
-                    <span className="font-bold text-orange-600">{product.quantity} left</span>
+                    <span className="font-bold text-sm sm:text-base text-orange-600">{product.quantity} left</span>
                   </div>
                 ))
               ) : (

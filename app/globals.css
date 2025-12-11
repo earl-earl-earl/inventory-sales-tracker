@@ -108,3 +108,23 @@ body {
     flex-wrap: wrap;
   }
 }
+
+/* Tablet optimizations (768px to 1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .mobile-card-table tr {
+    padding: 1.25rem;
+  }
+  
+  .mobile-card-table td {
+    padding: 0.625rem 0 !important;
+    font-size: 0.9375rem;
+  }
+  
+  .mobile-card-table td:before {
+    font-size: 0.8125rem;
+  }
+  
+  .mobile-card-table td:last-child > div {
+    gap: 0.625rem;
+  }
+}

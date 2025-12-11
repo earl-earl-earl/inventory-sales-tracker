@@ -31,7 +31,7 @@ export default function DashboardLayout({
     <div className="flex min-h-screen">
       <Sidebar isCollapsed={isCollapsed} setIsCollapsed={setIsCollapsed} />
       <main className={mainClass}>
-        <div className="p-4 sm:p-6 lg:p-8 pt-16 sm:pt-20 lg:pt-8">{children}</div>
+        <div className="p-4 sm:p-5 md:p-6 lg:p-8 pt-16 sm:pt-20 md:pt-6 lg:pt-8">{children}</div>
       </main>
     </div>
   );
