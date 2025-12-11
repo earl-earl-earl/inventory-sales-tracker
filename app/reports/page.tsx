@@ -9,6 +9,7 @@ import { databases, DATABASE_ID, COLLECTIONS } from "@/lib/config/appwrite";
 import { Query } from "appwrite";
 import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
 import type { Product, Sale } from "@/lib/types/database";
+import { formatCurrency } from "@/lib/utils";
 
 export default function ReportsPage() {
   const { loading: authLoading } = useProtectedRoute();
@@ -337,7 +338,7 @@ export default function ReportsPage() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-gray-500 text-sm font-medium">Total Revenue</p>
-                  <p className="text-2xl font-bold text-gray-900 mt-1">₱{totalRevenue.toFixed(2)}</p>
+                  <p className="text-2xl font-bold text-gray-900 mt-1">₱{formatCurrency(totalRevenue)}</p>
                 </div>
                 <div className="bg-blue-50 p-3 rounded-lg">
                   <DollarSign className="text-blue-500" size={20} />
@@ -349,7 +350,7 @@ export default function ReportsPage() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-gray-500 text-sm font-medium">Total Cost</p>
-                  <p className="text-2xl font-bold text-gray-900 mt-1">₱{totalCost.toFixed(2)}</p>
+                  <p className="text-2xl font-bold text-gray-900 mt-1">₱{formatCurrency(totalCost)}</p>
                 </div>
                 <div className="bg-orange-50 p-3 rounded-lg">
                   <ShoppingBag className="text-orange-500" size={20} />
@@ -361,7 +362,7 @@ export default function ReportsPage() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-gray-500 text-sm font-medium">Total Profit</p>
-                  <p className="text-2xl font-bold text-green-600 mt-1">₱{totalProfit.toFixed(2)}</p>
+                  <p className="text-2xl font-bold text-green-600 mt-1">₱{formatCurrency(totalProfit)}</p>
                 </div>
                 <div className="bg-green-50 p-3 rounded-lg">
                   <TrendingUp className="text-green-500" size={20} />
@@ -455,11 +456,11 @@ export default function ReportsPage() {
                               {product.category}
                             </span>
                           </td>
-                          <td className="px-4 py-3 text-right">₱{product.costPrice.toFixed(2)}</td>
-                          <td className="px-4 py-3 text-right">₱{product.sellingPrice.toFixed(2)}</td>
+                          <td className="px-4 py-3 text-right">₱{formatCurrency(product.costPrice)}</td>
+                          <td className="px-4 py-3 text-right">₱{formatCurrency(product.sellingPrice)}</td>
                           <td className="px-4 py-3 text-right font-semibold">{product.quantity}</td>
                           <td className="px-4 py-3 text-right font-semibold text-gray-900">
-                            ₱{(product.costPrice * product.quantity).toFixed(2)}
+                            ₱{formatCurrency(product.costPrice * product.quantity)}
                           </td>
                         </tr>
                       ))}
@@ -573,8 +574,8 @@ export default function ReportsPage() {
                           <tr key={index} className="hover:bg-gray-50">
                             <td className="px-4 py-3 font-medium text-gray-900">{product.name}</td>
                             <td className="px-4 py-3 text-right">{product.quantity}</td>
-                            <td className="px-4 py-3 text-right font-semibold">₱{product.revenue.toFixed(2)}</td>
-                            <td className="px-4 py-3 text-right font-semibold text-green-600">₱{product.profit.toFixed(2)}</td>
+                            <td className="px-4 py-3 text-right font-semibold">₱{formatCurrency(product.revenue)}</td>
+                            <td className="px-4 py-3 text-right font-semibold text-green-600">₱{formatCurrency(product.profit)}</td>
                             <td className="px-4 py-3 text-right">
                               <span className="inline-flex px-2 py-1 rounded-full text-xs font-medium bg-green-50 text-green-700">
                                 {((product.profit / product.revenue) * 100).toFixed(1)}%

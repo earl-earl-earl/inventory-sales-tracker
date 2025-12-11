@@ -12,6 +12,8 @@ import {
   deleteProduct,
 } from "@/lib/services/productService";
 import { Product } from "@/lib/types/database";
+import { formatCurrency } from "@/lib/utils";
+import { Tooltip } from "react-tooltip";
 
 export default function InventoryPage() {
   const { loading: authLoading } = useProtectedRoute();
@@ -253,7 +255,7 @@ export default function InventoryPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-gray-500 text-sm font-medium">Total Stock Value</p>
-                <p className="text-3xl font-bold text-gray-900 mt-1">₱{totalStockValue.toFixed(2)}</p>
+                <p className="text-3xl font-bold text-gray-900 mt-1">₱{formatCurrency(totalStockValue)}</p>
               </div>
               <div className="bg-green-50 p-3 rounded-lg">
                 <svg className="text-green-500" width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -377,8 +379,8 @@ export default function InventoryPage() {
                             {product.category}
                           </span>
                         </td>
-                        <td className="px-6 py-4 text-right text-gray-900">₱{product.costPrice.toFixed(2)}</td>
-                        <td className="px-6 py-4 text-right text-gray-900">₱{product.sellingPrice.toFixed(2)}</td>
+                        <td className="px-6 py-4 text-right text-gray-900">₱{formatCurrency(product.costPrice)}</td>
+                        <td className="px-6 py-4 text-right text-gray-900">₱{formatCurrency(product.sellingPrice)}</td>
                         <td className="px-6 py-4 text-right">
                           <span className={`font-semibold ${isLowStock ? 'text-orange-500' : 'text-gray-900'}`}>
                             {product.quantity}
@@ -386,37 +388,45 @@ export default function InventoryPage() {
                         </td>
                         <td className="px-6 py-4 text-right">
                           <span className={`font-semibold ${profitPerItem > 0 ? 'text-green-600' : 'text-red-600'}`}>
-                            ₱{profitPerItem.toFixed(2)}
+                            ₱{formatCurrency(profitPerItem)}
                           </span>
                         </td>
-                        <td className="px-6 py-4 text-right font-medium text-gray-900">₱{stockValue.toFixed(2)}</td>
+                        <td className="px-6 py-4 text-right font-medium text-gray-900">₱{formatCurrency(stockValue)}</td>
                         <td className="px-6 py-4">
                           <div className="flex items-center justify-center gap-2">
                             <button
                               onClick={() => handleAdjustStock(product.$id, -1)}
-                              className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
-                              title="Decrease stock"
+                              className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors cursor-pointer"
+                              aria-label="Decrease Stock"
+                              data-tooltip-id="decrease-stock"
+                              data-tooltip-content="Decrease Stock"
                             >
                               <ChevronDown size={18} />
                             </button>
                             <button
                               onClick={() => handleAdjustStock(product.$id, 1)}
-                              className="p-2 text-green-600 hover:bg-green-50 rounded-lg transition-colors"
-                              title="Increase stock"
+                              className="p-2 text-green-600 hover:bg-green-50 rounded-lg transition-colors cursor-pointer"
+                              aria-label="Increase Stock"
+                              data-tooltip-id="increase-stock"
+                              data-tooltip-content="Increase Stock"
                             >
                               <ChevronUp size={18} />
                             </button>
                             <button
                               onClick={() => openEditModal(product)}
-                              className="p-2 text-primary-600 hover:bg-primary-50 rounded-lg transition-colors"
-                              title="Edit"
+                              className="p-2 text-primary-600 hover:bg-primary-50 rounded-lg transition-colors cursor-pointer"
+                              aria-label="Edit Product"
+                              data-tooltip-id="edit"
+                              data-tooltip-content="Edit"
                             >
                               <Edit size={18} />
                             </button>
                             <button
                               onClick={() => handleDeleteProduct(product.$id)}
-                              className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
-                              title="Delete"
+                              className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors cursor-pointer"
+                              aria-label="Delete Product"
+                              data-tooltip-id="delete"
+                              data-tooltip-content="Delete"
                             >
                               <Trash2 size={18} />
                             </button>
@@ -624,6 +634,12 @@ export default function InventoryPage() {
           </div>
         </div>
       )}
+
+      {/* Tooltips */}
+      <Tooltip id="increase-stock" place="bottom" style={{ zIndex: 9999 }} />
+      <Tooltip id="decrease-stock" place="bottom" style={{ zIndex: 9999 }} />
+      <Tooltip id="edit" place="bottom" style={{ zIndex: 9999 }} />
+      <Tooltip id="delete" place="bottom" style={{ zIndex: 9999 }} />
     </DashboardLayout>
   );
 }

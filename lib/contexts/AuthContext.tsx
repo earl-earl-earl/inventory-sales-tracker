@@ -4,7 +4,8 @@ import { createContext, useContext, useEffect, useState, ReactNode } from "react
 import { account } from "@/lib/config/appwrite";
 import { ID, Models } from "appwrite";
 import { useRouter } from "next/navigation";
-import { AuthContextType } from "../types/auth"; 
+import { AuthContextType } from "../types/auth";
+import { Loader } from "lucide-react";
 
 // 1. CREATE CONTEXT
 // We initialize it as 'undefined' because we haven't loaded the provider yet.
@@ -105,7 +106,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     return (
         <AuthContext.Provider value={value}>
             {/* If we are loading, show a simple text. Otherwise, show the app. */}
-            {loading ? <div style={{padding: 50}}>Loading SmartStock...</div> : children}
+            {loading ? <div className="h-screen w-screen flex items-center justify-center"><Loader size={48} className="text-primary-500 animate-spin"></Loader></div> : children}
         </AuthContext.Provider>
     );
 };

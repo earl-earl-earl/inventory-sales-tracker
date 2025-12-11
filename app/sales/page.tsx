@@ -8,6 +8,8 @@ import { useState, useEffect } from "react";
 import { databases, DATABASE_ID, COLLECTIONS } from "@/lib/config/appwrite";
 import { Query, ID } from "appwrite";
 import type { Product, Sale } from "@/lib/types/database";
+import { formatCurrency } from "@/lib/utils";
+import { Tooltip } from "react-tooltip";
 
 export default function SalesPage() {
   const { loading: authLoading } = useProtectedRoute();
@@ -285,7 +287,7 @@ export default function SalesPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-gray-500 text-sm font-medium">Total Sales</p>
-                <p className="text-3xl font-bold text-gray-900 mt-1">₱{totalSales.toFixed(2)}</p>
+                <p className="text-3xl font-bold text-gray-900 mt-1">₱{formatCurrency(totalSales)}</p>
               </div>
               <div className="bg-blue-50 p-3 rounded-lg">
                 <DollarSign className="text-blue-500" size={24} />
@@ -297,7 +299,7 @@ export default function SalesPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-gray-500 text-sm font-medium">Total Profit</p>
-                <p className="text-3xl font-bold text-green-600 mt-1">₱{totalProfit.toFixed(2)}</p>
+                <p className="text-3xl font-bold text-green-600 mt-1">₱{formatCurrency(totalProfit)}</p>
               </div>
               <div className="bg-green-50 p-3 rounded-lg">
                 <TrendingUp className="text-green-500" size={24} />
@@ -309,7 +311,7 @@ export default function SalesPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-gray-500 text-sm font-medium">Cost of Goods</p>
-                <p className="text-3xl font-bold text-gray-900 mt-1">₱{totalCost.toFixed(2)}</p>
+                <p className="text-3xl font-bold text-gray-900 mt-1">₱{formatCurrency(totalCost)}</p>
               </div>
               <div className="bg-orange-50 p-3 rounded-lg">
                 <ShoppingCart className="text-orange-500" size={24} />
@@ -425,19 +427,21 @@ export default function SalesPage() {
                         </span>
                       </td>
                       <td className="px-6 py-4 text-right font-semibold text-gray-900">{sale.quantitySold}</td>
-                      <td className="px-6 py-4 text-right font-medium text-gray-900">₱{sale.totalSales.toFixed(2)}</td>
-                      <td className="px-6 py-4 text-right text-gray-600">₱{sale.totalCost.toFixed(2)}</td>
+                      <td className="px-6 py-4 text-right font-medium text-gray-900">₱{formatCurrency(sale.totalSales)}</td>
+                      <td className="px-6 py-4 text-right text-gray-600">₱{formatCurrency(sale.totalCost)}</td>
                       <td className="px-6 py-4 text-right">
                         <span className={`font-semibold ${sale.profit > 0 ? 'text-green-600' : 'text-red-600'}`}>
-                          ₱{sale.profit.toFixed(2)}
+                          ₱{formatCurrency(sale.profit)}
                         </span>
                       </td>
                       <td className="px-6 py-4">
                         <div className="flex items-center justify-center">
                           <button
                             onClick={() => handleDeleteSale(sale.$id, sale)}
-                            className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
-                            title="Delete"
+                            className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors cursor-pointer"
+                            aria-label="Delete"
+                            data-tooltip-id="delete"
+                            data-tooltip-content="Delete"
                           >
                             <Trash2 size={18} />
                           </button>
@@ -452,9 +456,11 @@ export default function SalesPage() {
         </div>
       </div>
 
+      <Tooltip id="delete" place="bottom" style={{zIndex:9999}}></Tooltip>
+
       {/* Add Sale Modal */}
       {showAddModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+        <div className="fixed inset-0 bg-black/45 flex items-center justify-center p-4 z-50">
           <div className="bg-white rounded-xl shadow-xl max-w-md w-full p-6">
             <h2 className="text-2xl font-bold text-gray-900 mb-6">Record New Sale</h2>
             <form onSubmit={handleAddSale} className="space-y-4">
@@ -543,15 +549,15 @@ export default function SalesPage() {
                       <div className="space-y-1 text-sm">
                         <div className="flex justify-between">
                           <span className="text-gray-600">Total Sales:</span>
-                          <span className="font-semibold">₱{totalSales.toFixed(2)}</span>
+                          <span className="font-semibold">₱{formatCurrency(totalSales)}</span>
                         </div>
                         <div className="flex justify-between">
                           <span className="text-gray-600">Cost:</span>
-                          <span className="font-semibold">₱{totalCost.toFixed(2)}</span>
+                          <span className="font-semibold">₱{formatCurrency(totalCost)}</span>
                         </div>
                         <div className="flex justify-between pt-2 border-t border-blue-100">
                           <span className="text-gray-700 font-medium">Profit:</span>
-                          <span className="font-bold text-green-600">₱{profit.toFixed(2)}</span>
+                          <span className="font-bold text-green-600">₱{formatCurrency(profit)}</span>
                         </div>
                       </div>
                     </div>
@@ -585,8 +591,9 @@ export default function SalesPage() {
                 </button>
               </div>
             </form>
-          </div>
+          </div><Tooltip key={"Increase Stock"}></Tooltip>
         </div>
+        
       )}
     </DashboardLayout>
   );

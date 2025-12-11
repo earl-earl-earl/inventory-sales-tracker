@@ -9,6 +9,7 @@ import { databases, DATABASE_ID, COLLECTIONS } from "@/lib/config/appwrite";
 import { Query } from "appwrite";
 import { LineChart, Line, BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
 import type { Product, Sale } from "@/lib/types/database";
+import { formatCurrency } from "@/lib/utils";
 
 export default function Dashboard() {
   const { loading: authLoading } = useProtectedRoute();
@@ -161,7 +162,7 @@ export default function Dashboard() {
               </span>
             </div>
             <p className="text-gray-500 text-sm font-medium">Total Inventory Value</p>
-            <p className="text-2xl font-bold text-gray-900 mt-1">₱{totalInventoryValue.toFixed(2)}</p>
+            <p className="text-2xl font-bold text-gray-900 mt-1">₱{formatCurrency(totalInventoryValue)}</p>
             <p className="text-xs text-gray-400 mt-2">Capital in stock</p>
           </div>
 
@@ -189,7 +190,7 @@ export default function Dashboard() {
               </span>
             </div>
             <p className="text-gray-500 text-sm font-medium">Sales Today</p>
-            <p className="text-2xl font-bold text-gray-900 mt-1">₱{salesToday.toFixed(2)}</p>
+            <p className="text-2xl font-bold text-gray-900 mt-1">₱{formatCurrency(salesToday)}</p>
             <p className="text-xs text-gray-400 mt-2">{todaySales.length} transactions</p>
           </div>
 
@@ -205,7 +206,7 @@ export default function Dashboard() {
               </span>
             </div>
             <p className="text-gray-500 text-sm font-medium">Profit Today</p>
-            <p className="text-2xl font-bold text-gray-900 mt-1">₱{profitToday.toFixed(2)}</p>
+            <p className="text-2xl font-bold text-gray-900 mt-1">₱{formatCurrency(profitToday)}</p>
             <p className="text-xs text-gray-400 mt-2">Net earnings</p>
           </div>
         </div>

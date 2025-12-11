@@ -1,7 +1,7 @@
 // components/DashboardLayout.tsx
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Sidebar from "./Sidebar";
 
 export default function DashboardLayout({
@@ -9,8 +9,19 @@ export default function DashboardLayout({
 }: {
   children: React.ReactNode;
 }) {
-  // Lift the collapse state to the layout so pages can react.
-  const [isCollapsed, setIsCollapsed] = useState(false);
+  // Initialize state from localStorage using a lazy initializer
+  const [isCollapsed, setIsCollapsed] = useState(() => {
+    if (typeof window === "undefined") {
+      return false;
+    }
+    const savedCollapsedState = localStorage.getItem("sidebarCollapsed");
+    return savedCollapsedState !== null ? JSON.parse(savedCollapsedState) : false;
+  });
+
+  // Save to localStorage whenever state changes
+  useEffect(() => {
+    localStorage.setItem("sidebarCollapsed", JSON.stringify(isCollapsed));
+  }, [isCollapsed]);
 
   // Update the left margin on large screens based on collapse state
   // Note: use lg:ml-20 when collapsed and lg:ml-80 when expanded to match Sidebar widths.
