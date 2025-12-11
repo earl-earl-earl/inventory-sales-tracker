@@ -1,3 +1,4 @@
+// components/Sidebar.tsx
 "use client";
 
 import { useState } from "react";
@@ -30,11 +31,20 @@ const navItems: NavItem[] = [
   { name: "Reports", href: "/reports", icon: FileText },
 ];
 
-export default function Sidebar() {
-  const [isCollapsed, setIsCollapsed] = useState(false);
+type SidebarProps = {
+  isCollapsed?: boolean;
+  setIsCollapsed?: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+export default function Sidebar({ isCollapsed: collapsedProp, setIsCollapsed: setCollapsedProp }: SidebarProps) {
+  // Keep local state as fallback so Sidebar still works standalone;
+  const [internalCollapsed, setInternalCollapsed] = useState(false);
+  const isCollapsed = collapsedProp ?? internalCollapsed;
+  const setIsCollapsed = setCollapsedProp ?? setInternalCollapsed;
+
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const pathname = usePathname();
-  const {logout, user} = useAuth();
+  const { logout, user } = useAuth();
 
   const toggleSidebar = () => setIsCollapsed(!isCollapsed);
   const toggleMobileSidebar = () => setIsMobileOpen(!isMobileOpen);
@@ -46,7 +56,9 @@ export default function Sidebar() {
       {/* Mobile Menu Button */}
       <button
         onClick={toggleMobileSidebar}
-        className="lg:hidden fixed top-4 left-4 z-50 p-2 rounded-lg bg-primary-600 text-white hover:bg-primary-700 transition-colors"
+        className={`lg:hidden fixed top-4 p-2 rounded-lg bg-primary-600 text-white hover:bg-primary-700 transition-colors z-50 ${
+          isMobileOpen ? "right-4" : "left-4"
+        }`}
       >
         {isMobileOpen ? <X size={24} /> : <Menu size={24} />}
       </button>
@@ -63,24 +75,24 @@ export default function Sidebar() {
       <aside
         className={`
           fixed top-0 left-0 h-screen bg-white dark:bg-white border-r border-gray-500/35 dark:border-gray-300 
-          transition-all duration-300 ease-in-out z-40 overflow-x-hidden overflow-y-auto flex flex-col ...
+          transition-all duration-300 ease-in-out z-40 overflow-x-hidden overflow-y-auto flex flex-col
           ${isCollapsed ? "w-20" : "w-80"}
           ${isMobileOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"}
         `}
       >
         {/* Header */}
-        <div className="flex items-center justify-between p-4 border-b border-gray-500/35 dark:border-gray-300">
+        <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-300">
           {!isCollapsed && (
             <div className="flex items-center space-x-2">
               <div className="w-8 h-8 bg-primary-600 rounded-lg flex items-center justify-center">
                 <Package className="w-5 h-5 text-white" />
               </div>
-              <span className="font-bold text-lg text-gray-900 dark:text-white">
+              <span className="font-bold font-heading text-xl text-gray-900 dark:text-white">
                 SmartStock
               </span>
             </div>
           )}
-          
+
           {/* Desktop Toggle Button */}
           <button
             onClick={toggleSidebar}
@@ -106,10 +118,10 @@ export default function Sidebar() {
                 </span>
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-sm font-medium text-gray-900 dark:text-white truncate">
+                <p className="font-medium text-gray-900 dark:text-white truncate">
                   {user.name}
                 </p>
-                <p className="text-xs text-gray-500 dark:text-gray-400 truncate">
+                <p className="text-sm text-gray-500 dark:text-gray-400 truncate">
                   {user.email}
                 </p>
               </div>
@@ -122,7 +134,7 @@ export default function Sidebar() {
           {navItems.map((item) => {
             const Icon = item.icon;
             const active = isActive(item.href);
-            
+
             return (
               <Link
                 key={item.href}
@@ -141,7 +153,7 @@ export default function Sidebar() {
               >
                 <Icon className="w-5 h-5 shrink-0" />
                 {!isCollapsed && (
-                  <span className="font-medium text-sm">{item.name}</span>
+                  <span className="font-medium">{item.name}</span>
                 )}
               </Link>
             );

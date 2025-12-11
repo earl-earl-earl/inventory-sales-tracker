@@ -38,10 +38,10 @@ export default function LoginPage() {
                         <Package className="w-8 h-8 text-white" />
                     </div>
                     <h1 className="text-3xl font-bold font-heading text-gray-900 mb-2">
-                        Welcome Back
+                        SmartStock
                     </h1>
                     <p className="text-gray-500 font-sans">
-                        Sign in to SmartStock
+                        Welcome back! Sign in to continue.
                     </p>
                 </div>
 

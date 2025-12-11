@@ -19,7 +19,7 @@ export default function Dashboard() {
   return (
     <DashboardLayout>
       <div>
-        <h1 className="text-3xl font-heading font-bold mb-6">Dashboard</h1>
+        <h1 className="text-3xl font-heading font-bold mb-6">Sales</h1>
         <p className="text-gray-600">Welcome to SmartStock!</p>
         {/* Add your dashboard content here */}
       </div>
