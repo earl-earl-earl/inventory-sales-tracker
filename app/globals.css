@@ -43,3 +43,68 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans);
 }
+
+/* Mobile-friendly table styles */
+@media (max-width: 1024px) {
+  .mobile-card-table {
+    display: block;
+  }
+  
+  .mobile-card-table thead {
+    display: none;
+  }
+  
+  .mobile-card-table tbody {
+    display: block;
+  }
+  
+  .mobile-card-table tr {
+    display: block;
+    margin-bottom: 1rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.75rem;
+    padding: 1rem;
+    background: white;
+  }
+  
+  .mobile-card-table td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0 !important;
+    border: none !important;
+  }
+  
+  .mobile-card-table td:before {
+    content: attr(data-label);
+    font-weight: 600;
+    color: #6b7280;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+  }
+  
+  .mobile-card-table td:last-child {
+    border-top: 1px solid #e5e7eb;
+    padding-top: 0.75rem !important;
+    margin-top: 0.5rem;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  /* Add Actions label for last column */
+  .mobile-card-table td:last-child:before {
+    content: "ACTIONS";
+    display: block;
+    margin-bottom: 0.75rem;
+    text-align: center;
+    width: 100%;
+  }
+  
+  .mobile-card-table td:last-child > div {
+    display: flex;
+    gap: 0.5rem;
+    width: 100%;
+    flex-wrap: wrap;
+  }
+}

@@ -66,7 +66,7 @@ export default function Sidebar({ isCollapsed: collapsedProp, setIsCollapsed: se
       {/* Overlay for mobile */}
       {isMobileOpen && (
         <div
-          className="lg:hidden fixed inset-0 bg-black/50 z-40"
+          className="lg:hidden fixed inset-0 bg-black/30 z-40"
           onClick={toggleMobileSidebar}
         />
       )}
@@ -81,13 +81,13 @@ export default function Sidebar({ isCollapsed: collapsedProp, setIsCollapsed: se
         `}
       >
         {/* Header */}
-        <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-300">
+        <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-300 min-h-[70px]">
           {!isCollapsed && (
             <div className="flex items-center space-x-2">
               <div className="w-8 h-8 bg-primary-600 rounded-lg flex items-center justify-center">
                 <Package className="w-5 h-5 text-white" />
               </div>
-              <span className="font-bold font-heading text-xl text-gray-900 dark:text-white">
+              <span className="font-bold font-heading text-lg sm:text-xl text-gray-900 dark:text-white">
                 SmartStock
               </span>
             </div>

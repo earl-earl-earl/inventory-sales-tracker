@@ -145,83 +145,83 @@ export default function Dashboard() {
       <div className="space-y-6">
         {/* Header */}
         <div>
-          <h1 className="text-3xl font-heading font-bold text-gray-900">Dashboard</h1>
-          <p className="text-gray-500 mt-1">Welcome back! Here&apos;s your business overview</p>
+          <h1 className="text-2xl sm:text-3xl font-heading font-bold text-gray-900">Dashboard</h1>
+          <p className="text-sm sm:text-base text-gray-500 mt-1">Welcome back! Here&apos;s your business overview</p>
         </div>
 
         {/* Key Metrics */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {/* Total Inventory Value */}
-          <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
-            <div className="flex items-center justify-between mb-4">
-              <div className="bg-blue-50 p-3 rounded-lg">
-                <Package className="text-blue-500" size={24} />
+          <div className="bg-white rounded-xl p-4 sm:p-6 shadow-sm border border-gray-100">
+            <div className="flex items-center justify-between mb-3 sm:mb-4">
+              <div className="bg-blue-50 p-2 sm:p-3 rounded-lg">
+                <Package className="text-blue-500" size={20} />
               </div>
               <span className="text-xs font-medium text-green-600 flex items-center gap-1">
                 <ArrowUp size={12} />
               </span>
             </div>
-            <p className="text-gray-500 text-sm font-medium">Total Inventory Value</p>
-            <p className="text-2xl font-bold text-gray-900 mt-1">₱{formatCurrency(totalInventoryValue)}</p>
-            <p className="text-xs text-gray-400 mt-2">Capital in stock</p>
+            <p className="text-gray-500 text-xs sm:text-sm font-medium">Total Inventory Value</p>
+            <p className="text-xl sm:text-2xl font-bold text-gray-900 mt-1">₱{formatCurrency(totalInventoryValue)}</p>
+            <p className="text-xs text-gray-400 mt-1 sm:mt-2">Capital in stock</p>
           </div>
 
           {/* Total Products */}
-          <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
-            <div className="flex items-center justify-between mb-4">
-              <div className="bg-purple-50 p-3 rounded-lg">
-                <Package className="text-purple-500" size={24} />
+          <div className="bg-white rounded-xl p-4 sm:p-6 shadow-sm border border-gray-100">
+            <div className="flex items-center justify-between mb-3 sm:mb-4">
+              <div className="bg-purple-50 p-2 sm:p-3 rounded-lg">
+                <Package className="text-purple-500" size={20} />
               </div>
             </div>
-            <p className="text-gray-500 text-sm font-medium">Total Products</p>
-            <p className="text-2xl font-bold text-gray-900 mt-1">{totalProducts}</p>
-            <p className="text-xs text-gray-400 mt-2">Unique items</p>
+            <p className="text-gray-500 text-xs sm:text-sm font-medium">Total Products</p>
+            <p className="text-xl sm:text-2xl font-bold text-gray-900 mt-1">{totalProducts}</p>
+            <p className="text-xs text-gray-400 mt-1 sm:mt-2">Unique items</p>
           </div>
 
           {/* Sales Today */}
-          <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
-            <div className="flex items-center justify-between mb-4">
-              <div className="bg-green-50 p-3 rounded-lg">
-                <DollarSign className="text-green-500" size={24} />
+          <div className="bg-white rounded-xl p-4 sm:p-6 shadow-sm border border-gray-100">
+            <div className="flex items-center justify-between mb-3 sm:mb-4">
+              <div className="bg-green-50 p-2 sm:p-3 rounded-lg">
+                <DollarSign className="text-green-500" size={20} />
               </div>
               <span className="text-xs font-medium text-green-600 flex items-center gap-1">
                 <ArrowUp size={12} />
                 Today
               </span>
             </div>
-            <p className="text-gray-500 text-sm font-medium">Sales Today</p>
-            <p className="text-2xl font-bold text-gray-900 mt-1">₱{formatCurrency(salesToday)}</p>
-            <p className="text-xs text-gray-400 mt-2">{todaySales.length} transactions</p>
+            <p className="text-gray-500 text-xs sm:text-sm font-medium">Sales Today</p>
+            <p className="text-xl sm:text-2xl font-bold text-gray-900 mt-1">₱{formatCurrency(salesToday)}</p>
+            <p className="text-xs text-gray-400 mt-1 sm:mt-2">{todaySales.length} transactions</p>
           </div>
 
           {/* Profit Today */}
-          <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
-            <div className="flex items-center justify-between mb-4">
-              <div className="bg-orange-50 p-3 rounded-lg">
-                <TrendingUp className="text-orange-500" size={24} />
+          <div className="bg-white rounded-xl p-4 sm:p-6 shadow-sm border border-gray-100">
+            <div className="flex items-center justify-between mb-3 sm:mb-4">
+              <div className="bg-orange-50 p-2 sm:p-3 rounded-lg">
+                <TrendingUp className="text-orange-500" size={20} />
               </div>
               <span className="text-xs font-medium text-green-600 flex items-center gap-1">
                 <ArrowUp size={12} />
                 Today
               </span>
             </div>
-            <p className="text-gray-500 text-sm font-medium">Profit Today</p>
-            <p className="text-2xl font-bold text-gray-900 mt-1">₱{formatCurrency(profitToday)}</p>
-            <p className="text-xs text-gray-400 mt-2">Net earnings</p>
+            <p className="text-gray-500 text-xs sm:text-sm font-medium">Profit Today</p>
+            <p className="text-xl sm:text-2xl font-bold text-gray-900 mt-1">₱{formatCurrency(profitToday)}</p>
+            <p className="text-xs text-gray-400 mt-1 sm:mt-2">Net earnings</p>
           </div>
         </div>
 
         {/* Charts Row */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Sales Trend */}
-          <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Sales Trend (Last 7 Days)</h3>
+          <div className="bg-white rounded-xl p-4 sm:p-6 shadow-sm border border-gray-100">
+            <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-3 sm:mb-4">Sales Trend (Last 7 Days)</h3>
             {loading ? (
-              <div className="h-64 flex items-center justify-center">
+              <div className="h-48 sm:h-64 flex items-center justify-center">
                 <Loader size={32} className="text-primary-500 animate-spin" />
               </div>
             ) : (
-              <ResponsiveContainer width="100%" height={300}>
+              <ResponsiveContainer width="100%" height={250}>
                 <LineChart data={salesTrend}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
                   <XAxis dataKey="date" stroke="#666" style={{ fontSize: '12px' }} />
@@ -243,14 +243,14 @@ export default function Dashboard() {
           </div>
 
           {/* Category Distribution */}
-          <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Inventory by Category</h3>
+          <div className="bg-white rounded-xl p-4 sm:p-6 shadow-sm border border-gray-100">
+            <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-3 sm:mb-4">Inventory by Category</h3>
             {loading ? (
-              <div className="h-64 flex items-center justify-center">
+              <div className="h-48 sm:h-64 flex items-center justify-center">
                 <Loader size={32} className="text-primary-500 animate-spin" />
               </div>
             ) : categoryData.length > 0 ? (
-              <ResponsiveContainer width="100%" height={300}>
+              <ResponsiveContainer width="100%" height={250}>
                 <PieChart>
                   <Pie
                     data={categoryData}
@@ -258,7 +258,7 @@ export default function Dashboard() {
                     cy="50%"
                     labelLine={false}
                     label={({ name, percent }) => `${name} ${((percent || 0) * 100).toFixed(0)}%`}
-                    outerRadius={100}
+                    outerRadius={80}
                     fill="#8884d8"
                     dataKey="value"
                   >
@@ -280,14 +280,14 @@ export default function Dashboard() {
         {/* Bottom Row */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Top Selling Products */}
-          <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Top Selling Products</h3>
+          <div className="bg-white rounded-xl p-4 sm:p-6 shadow-sm border border-gray-100">
+            <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-3 sm:mb-4">Top Selling Products</h3>
             {loading ? (
-              <div className="h-64 flex items-center justify-center">
+              <div className="h-48 sm:h-64 flex items-center justify-center">
                 <Loader size={32} className="text-primary-500 animate-spin" />
               </div>
             ) : topProducts.length > 0 ? (
-              <ResponsiveContainer width="100%" height={300}>
+              <ResponsiveContainer width="100%" height={250}>
                 <BarChart data={topProducts}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
                   <XAxis dataKey="name" stroke="#666" style={{ fontSize: '12px' }} />
@@ -311,16 +311,16 @@ export default function Dashboard() {
           </div>
 
           {/* Low Stock Alert */}
-          <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="text-lg font-semibold text-gray-900">Low Stock Alert</h3>
-              <span className="bg-orange-50 text-orange-600 px-3 py-1 rounded-full text-sm font-medium">
+          <div className="bg-white rounded-xl p-4 sm:p-6 shadow-sm border border-gray-100">
+            <div className="flex items-center justify-between mb-3 sm:mb-4">
+              <h3 className="text-base sm:text-lg font-semibold text-gray-900">Low Stock Alert</h3>
+              <span className="bg-orange-50 text-orange-600 px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium">
                 {lowStockItems.length} items
               </span>
             </div>
-            <div className="space-y-3 max-h-[300px] overflow-y-auto">
+            <div className="space-y-2 sm:space-y-3 max-h-[250px] sm:max-h-[300px] overflow-y-auto">
               {loading ? (
-                <div className="h-64 flex items-center justify-center">
+                <div className="h-48 sm:h-64 flex items-center justify-center">
                   <Loader size={32} className="text-primary-500 animate-spin" />
                 </div>
               ) : lowStockItems.length > 0 ? (

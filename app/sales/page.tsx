@@ -277,56 +277,56 @@ export default function SalesPage() {
       <div className="space-y-6">
         {/* Header */}
         <div>
-          <h1 className="text-3xl font-heading font-bold text-gray-900">Sales</h1>
-          <p className="text-gray-500 mt-1">Track and manage all your sales transactions</p>
+          <h1 className="text-2xl sm:text-3xl font-heading font-bold text-gray-900">Sales</h1>
+          <p className="text-sm sm:text-base text-gray-500 mt-1">Track and manage all your sales transactions</p>
         </div>
 
         {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-          <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="bg-white rounded-xl p-4 sm:p-6 shadow-sm border border-gray-100">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-gray-500 text-sm font-medium">Total Sales</p>
-                <p className="text-3xl font-bold text-gray-900 mt-1">₱{formatCurrency(totalSales)}</p>
+                <p className="text-gray-500 text-xs sm:text-sm font-medium">Total Sales</p>
+                <p className="text-2xl sm:text-3xl font-bold text-gray-900 mt-1">₱{formatCurrency(totalSales)}</p>
               </div>
-              <div className="bg-blue-50 p-3 rounded-lg">
-                <DollarSign className="text-blue-500" size={24} />
+              <div className="bg-blue-50 p-2 sm:p-3 rounded-lg">
+                <DollarSign className="text-blue-500" size={20} />
               </div>
             </div>
           </div>
 
-          <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+          <div className="bg-white rounded-xl p-4 sm:p-6 shadow-sm border border-gray-100">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-gray-500 text-sm font-medium">Total Profit</p>
-                <p className="text-3xl font-bold text-green-600 mt-1">₱{formatCurrency(totalProfit)}</p>
+                <p className="text-gray-500 text-xs sm:text-sm font-medium">Total Profit</p>
+                <p className="text-2xl sm:text-3xl font-bold text-green-600 mt-1">₱{formatCurrency(totalProfit)}</p>
               </div>
-              <div className="bg-green-50 p-3 rounded-lg">
-                <TrendingUp className="text-green-500" size={24} />
+              <div className="bg-green-50 p-2 sm:p-3 rounded-lg">
+                <TrendingUp className="text-green-500" size={20} />
               </div>
             </div>
           </div>
 
-          <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+          <div className="bg-white rounded-xl p-4 sm:p-6 shadow-sm border border-gray-100">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-gray-500 text-sm font-medium">Cost of Goods</p>
-                <p className="text-3xl font-bold text-gray-900 mt-1">₱{formatCurrency(totalCost)}</p>
+                <p className="text-gray-500 text-xs sm:text-sm font-medium">Cost of Goods</p>
+                <p className="text-2xl sm:text-3xl font-bold text-gray-900 mt-1">₱{formatCurrency(totalCost)}</p>
               </div>
-              <div className="bg-orange-50 p-3 rounded-lg">
-                <ShoppingCart className="text-orange-500" size={24} />
+              <div className="bg-orange-50 p-2 sm:p-3 rounded-lg">
+                <ShoppingCart className="text-orange-500" size={20} />
               </div>
             </div>
           </div>
 
-          <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+          <div className="bg-white rounded-xl p-4 sm:p-6 shadow-sm border border-gray-100">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-gray-500 text-sm font-medium">Transactions</p>
-                <p className="text-3xl font-bold text-gray-900 mt-1">{totalTransactions}</p>
+                <p className="text-gray-500 text-xs sm:text-sm font-medium">Transactions</p>
+                <p className="text-2xl sm:text-3xl font-bold text-gray-900 mt-1">{totalTransactions}</p>
               </div>
-              <div className="bg-purple-50 p-3 rounded-lg">
-                <Calendar className="text-purple-500" size={24} />
+              <div className="bg-purple-50 p-2 sm:p-3 rounded-lg">
+                <Calendar className="text-purple-500" size={20} />
               </div>
             </div>
           </div>
@@ -346,11 +346,11 @@ export default function SalesPage() {
               />
             </div>
 
-            <div className="flex gap-2">
+            <div className="flex flex-wrap gap-2">
               <select
                 value={dateFilter}
                 onChange={(e) => setDateFilter(e.target.value)}
-                className="px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white"
+                className="px-3 sm:px-4 py-2.5 text-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white"
                 aria-label="Filter by date range"
               >
                 <option value="all">All Time</option>
@@ -361,18 +361,18 @@ export default function SalesPage() {
 
               <button
                 onClick={handleExportCSV}
-                className="flex items-center gap-2 px-4 py-2.5 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
+                className="flex items-center gap-1 sm:gap-2 px-3 sm:px-4 py-2.5 text-sm border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
               >
-                <Download size={18} />
-                Export
+                <Download size={16} />
+                <span className="hidden sm:inline">Export</span>
               </button>
 
               <button
                 onClick={() => setShowAddModal(true)}
-                className="flex items-center gap-2 bg-primary-500 hover:bg-primary-600 text-white px-4 py-2.5 rounded-lg transition-colors shadow-sm"
+                className="flex items-center gap-1 sm:gap-2 bg-primary-500 hover:bg-primary-600 text-white px-3 sm:px-4 py-2.5 text-sm rounded-lg transition-colors shadow-sm"
               >
-                <Plus size={20} />
-                Add Sale
+                <Plus size={18} />
+                <span>Add Sale</span>
               </button>
             </div>
           </div>
@@ -392,7 +392,7 @@ export default function SalesPage() {
             </div>
           ) : (
             <div className="overflow-x-auto">
-              <table className="w-full">
+              <table className="w-full mobile-card-table">
                 <thead className="bg-gray-50 border-b border-gray-100">
                   <tr>
                     <th className="text-left px-6 py-4 text-xs font-semibold text-gray-600 uppercase tracking-wider">Date & Time</th>
@@ -408,7 +408,7 @@ export default function SalesPage() {
                 <tbody className="divide-y divide-gray-100">
                   {filteredSales.map((sale) => (
                     <tr key={sale.$id} className="hover:bg-gray-50 transition-colors">
-                      <td className="px-6 py-4">
+                      <td className="px-6 py-4" data-label="Date">
                         <div>
                           <p className="font-medium text-gray-900">
                             {new Date(sale.dateSold).toLocaleDateString()}
@@ -418,23 +418,23 @@ export default function SalesPage() {
                           </p>
                         </div>
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-6 py-4" data-label="Product">
                         <p className="font-medium text-gray-900">{sale.product?.name || "Unknown"}</p>
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-6 py-4" data-label="Category">
                         <span className="inline-flex px-2.5 py-1 rounded-full text-xs font-medium bg-primary-50 text-primary-700">
                           {sale.product?.category || "N/A"}
                         </span>
                       </td>
-                      <td className="px-6 py-4 text-right font-semibold text-gray-900">{sale.quantitySold}</td>
-                      <td className="px-6 py-4 text-right font-medium text-gray-900">₱{formatCurrency(sale.totalSales)}</td>
-                      <td className="px-6 py-4 text-right text-gray-600">₱{formatCurrency(sale.totalCost)}</td>
-                      <td className="px-6 py-4 text-right">
+                      <td className="px-6 py-4 text-right font-semibold text-gray-900" data-label="Qty">{sale.quantitySold}</td>
+                      <td className="px-6 py-4 text-right font-medium text-gray-900" data-label="Sales">₱{formatCurrency(sale.totalSales)}</td>
+                      <td className="px-6 py-4 text-right text-gray-600" data-label="Cost">₱{formatCurrency(sale.totalCost)}</td>
+                      <td className="px-6 py-4 text-right" data-label="Profit">
                         <span className={`font-semibold ${sale.profit > 0 ? 'text-green-600' : 'text-red-600'}`}>
                           ₱{formatCurrency(sale.profit)}
                         </span>
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-6 py-4" data-label="Actions">
                         <div className="flex items-center justify-center">
                           <button
                             onClick={() => handleDeleteSale(sale.$id, sale)}
