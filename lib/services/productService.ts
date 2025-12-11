@@ -1,14 +1,11 @@
 // lib/services/productService.ts
-import { databases } from "@/lib/config/appwrite";
-import { Query } from "appwrite";
+import { databases, DATABASE_ID, COLLECTIONS } from "@/lib/config/appwrite";
+import { Query, ID } from "appwrite";
 import {
   Product,
   CreateProductData,
   UpdateProductData,
-} from "@/lib/types/product";
-
-const DATABASE_ID = "693818e8000bdb7d6add";
-const COLLECTION_ID = "products";
+} from "@/lib/types/database";
 
 /**
  * Fetches all products from the database, ordered by creation date (newest first)
@@ -17,7 +14,7 @@ export const fetchProducts = async (): Promise<Product[]> => {
   try {
     const response = await databases.listDocuments(
       DATABASE_ID,
-      COLLECTION_ID,
+      COLLECTIONS.PRODUCTS,
       [Query.orderDesc("$createdAt")]
     );
     return response.documents as unknown as Product[];
@@ -34,8 +31,8 @@ export const createProduct = async (data: CreateProductData): Promise<Product> =
   try {
     const response = await databases.createDocument(
       DATABASE_ID,
-      COLLECTION_ID,
-      "unique()",
+      COLLECTIONS.PRODUCTS,
+      ID.unique(),
       {
         name: data.name,
         category: data.category,
@@ -61,7 +58,7 @@ export const updateProduct = async (
   try {
     const response = await databases.updateDocument(
       DATABASE_ID,
-      COLLECTION_ID,
+      COLLECTIONS.PRODUCTS,
       productId,
       {
         name: data.name,
@@ -83,7 +80,7 @@ export const updateProduct = async (
  */
 export const deleteProduct = async (productId: string): Promise<void> => {
   try {
-    await databases.deleteDocument(DATABASE_ID, COLLECTION_ID, productId);
+    await databases.deleteDocument(DATABASE_ID, COLLECTIONS.PRODUCTS, productId);
   } catch (error) {
     console.error("Error deleting product:", error);
     throw new Error("Failed to delete product");

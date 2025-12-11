@@ -11,7 +11,7 @@ import {
   updateProduct,
   deleteProduct,
 } from "@/lib/services/productService";
-import { Product } from "@/lib/types/product";
+import { Product } from "@/lib/types/database";
 
 export default function InventoryPage() {
   const { loading: authLoading } = useProtectedRoute();
